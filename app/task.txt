@@ -1,0 +1,27 @@
+# Tarefas: Migração do Sistema de Login Seguro para Supabase Real
+
+- [x] Configurar Utilitários do Supabase SSR
+  - [x] Criar `utils/supabase/client.ts`
+  - [x] Criar `utils/supabase/server.ts`
+  - [x] Criar `utils/supabase/middleware.ts`
+- [x] Configurar Middleware Geral
+  - [x] Criar `middleware.ts` na raiz para proteção de rotas e refresh de token
+- [ ] Refatorar e Limpar Serviços
+  - [ ] Refatorar `services/auth.service.ts`
+  - [ ] Refatorar `services/totp.service.ts`
+  - [ ] Excluir `services/webauthn.service.ts`
+  - [ ] Excluir arquivos antigos da pasta `lib/supabase`
+- [ ] Atualizar Rotas e Páginas
+  - [ ] Atualizar `app/auth/callback/route.ts`
+  - [ ] Atualizar `app/register/page.tsx`
+  - [ ] Criar `app/verify-email/page.tsx`
+  - [ ] Excluir pasta `confirm-registration`
+  - [ ] Atualizar `app/login/page.tsx`
+  - [ ] Atualizar `app/mfa/setup/page.tsx`
+  - [ ] Criar `app/mfa/verify/page.tsx`
+  - [ ] Excluir `app/mfa/page.tsx`
+  - [ ] Atualizar `app/forgot-password/page.tsx`
+  - [ ] Atualizar `app/reset-password/page.tsx`
+  - [ ] Atualizar `app/(authenticated)/dashboard/page.tsx`
+- [ ] Verificação e Build
+  - [ ] Testar build local com `npm run build`
