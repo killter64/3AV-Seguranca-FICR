@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Sistema de Login Seguro - ADS"
+version = "1.0.0"
+id = "artifacts/login-seguro"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20621
+
+[services.development]
+run = "pnpm --filter @workspace/login-seguro run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/login-seguro", "run", "build" ]
+publicDir = "artifacts/login-seguro/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20621"
+BASE_PATH = "/"
