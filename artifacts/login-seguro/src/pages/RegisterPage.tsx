@@ -11,7 +11,7 @@ import { Card } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import AuthLayout from '@/components/AuthLayout';
 import PasswordStrengthMeter from '@/components/PasswordStrengthMeter';
-import { AlertCircle, Loader2 } from 'lucide-react';
+import { AlertCircle, Loader2, UserPlus } from 'lucide-react';
 
 export default function RegisterPage() {
   const [, navigate] = useLocation();
@@ -51,7 +51,7 @@ export default function RegisterPage() {
     !isSubmitting;
 
   return (
-    <AuthLayout title="Criar Conta" subtitle="Junte-se ao sistema de autenticação segura">
+    <AuthLayout title="Criar Conta" subtitle="Comece a gerenciar as finanças do seu negócio">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           {serverError && (
@@ -113,9 +113,9 @@ export default function RegisterPage() {
 
           <Card className="border-emerald-500/20 bg-emerald-500/5 p-3">
             <p className="text-xs text-emerald-300 leading-relaxed">
-              <span className="font-semibold">🔐 Segurança:</span> Sua senha será criptografada
-              usando hash bcrypt + salt de forma automática e segura no servidor do Supabase.
-              Você receberá um código de confirmação no seu email.
+              <span className="font-semibold">📊 Contábil+:</span> Sua senha será protegida com criptografia de nível bancário.
+              Após o cadastro, você poderá cadastrar sua empresa, controlar receitas e despesas,
+              e acompanhar seu fluxo de caixa em tempo real.
             </p>
           </Card>
 

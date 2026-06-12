@@ -108,19 +108,19 @@ export default function MfaSetupPage() {
 
   if (step === 'complete') {
     return (
-      <AuthLayout title="MFA Configurado!" subtitle="Sua conta está protegida">
+      <AuthLayout title="Autenticação Ativada!" subtitle="Sua conta está protegida com 2 fatores">
         <div className="space-y-6 text-center">
           <div className="flex justify-center">
             <div className="rounded-full bg-emerald-500/20 p-6"><CheckCircle2 className="h-12 w-12 text-emerald-400" /></div>
           </div>
-          <p className="text-slate-300">A autenticação de dois fatores (TOTP) foi configurada com sucesso. Redirecionando para o Dashboard...</p>
+          <p className="text-slate-300">Autenticação de dois fatores ativada! Seus dados financeiros e contábeis estão ainda mais seguros. Redirecionando para o painel...</p>
         </div>
       </AuthLayout>
     );
   }
 
   return (
-    <AuthLayout title="Configurar Autenticador (MFA)" subtitle="Proteja sua conta utilizando 2 fatores">
+    <AuthLayout title="Autenticação de Dois Fatores" subtitle="Proteja os dados financeiros da sua empresa">
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <Button onClick={() => navigate('/login')} variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">

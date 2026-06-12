@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { LogOut, Shield, Clock, Globe, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { LogOut, Shield, Clock, Globe, CheckCircle2, AlertCircle, Loader2, Calculator, TrendingUp, TrendingDown, Wallet, AlertTriangle } from 'lucide-react';
 
 export default function DashboardPage() {
   const [, navigate] = useLocation();
@@ -68,7 +68,7 @@ export default function DashboardPage() {
       <div className="min-h-screen w-full bg-slate-950 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="animate-spin h-8 w-8 text-emerald-400 mx-auto mb-3" />
-          <p className="text-slate-400 text-sm font-mono">Carregando dados da sessão...</p>
+          <p className="text-slate-400 text-sm font-mono">Carregando seu painel Contábil+...</p>
         </div>
       </div>
     );
@@ -87,25 +87,25 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-lg border border-emerald-500/30 bg-slate-800">
-                <Shield className="h-6 w-6 text-emerald-400" />
+                <Calculator className="h-6 w-6 text-emerald-400" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-slate-100">Painel de Segurança</h1>
-                <p className="text-sm text-slate-400">Bem-vindo ao sistema seguro (Sessão Ativa)</p>
+                <h1 className="text-3xl font-bold text-slate-100">Painel de Controle</h1>
+                <p className="text-sm text-slate-400">Contábil+ — Sessão ativa</p>
               </div>
             </div>
 
             <Button onClick={handleLogout} disabled={isLoggingOut} variant="destructive"
               className="gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50">
               <LogOut className="h-4 w-4" />
-              {isLoggingOut ? 'Saindo...' : 'Logout Seguro'}
+              {isLoggingOut ? 'Saindo...' : 'Sair da Conta'}
             </Button>
           </div>
 
           {isExpired && (
             <Alert variant="destructive" className="border-red-500/50 bg-red-500/10">
               <AlertCircle className="h-4 w-4" />
-              <AlertDescription>Sua sessão expirou. Você será redirecionado para efetuar login novamente.</AlertDescription>
+              <AlertDescription>Sua sessão expirou. Você será redirecionado para fazer login novamente.</AlertDescription>
             </Alert>
           )}
 
@@ -113,28 +113,52 @@ export default function DashboardPage() {
             <Alert className="border-yellow-500/50 bg-yellow-500/10">
               <AlertCircle className="h-4 w-4 text-yellow-500" />
               <AlertDescription className="text-yellow-300">
-                🔒 Para maior segurança, você deve configurar seu fator de autenticação adicional.
+                🔒 Para proteger os dados financeiros da sua empresa, ative a autenticação de dois fatores.
                 <Button variant="link" size="sm" className="text-emerald-400 hover:text-emerald-300 p-0 ml-1 font-semibold underline"
                   onClick={() => navigate('/mfa/setup')}>
-                  Configurar MFA agora
+                  Ativar agora
                 </Button>
               </AlertDescription>
             </Alert>
           )}
         </div>
 
+        {/* Resumo Financeiro */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Card className="border-emerald-500/20 bg-slate-900/50 backdrop-blur-sm p-4 text-center">
+            <TrendingUp className="h-5 w-5 text-emerald-400 mx-auto mb-2" />
+            <p className="text-xs text-slate-400">Receitas do Mês</p>
+            <p className="text-lg font-bold text-emerald-400">R$ 0,00</p>
+          </Card>
+          <Card className="border-red-500/20 bg-slate-900/50 backdrop-blur-sm p-4 text-center">
+            <TrendingDown className="h-5 w-5 text-red-400 mx-auto mb-2" />
+            <p className="text-xs text-slate-400">Despesas do Mês</p>
+            <p className="text-lg font-bold text-red-400">R$ 0,00</p>
+          </Card>
+          <Card className="border-blue-500/20 bg-slate-900/50 backdrop-blur-sm p-4 text-center">
+            <Wallet className="h-5 w-5 text-blue-400 mx-auto mb-2" />
+            <p className="text-xs text-slate-400">Saldo Atual</p>
+            <p className="text-lg font-bold text-blue-400">R$ 0,00</p>
+          </Card>
+          <Card className="border-yellow-500/20 bg-slate-900/50 backdrop-blur-sm p-4 text-center">
+            <AlertTriangle className="h-5 w-5 text-yellow-400 mx-auto mb-2" />
+            <p className="text-xs text-slate-400">Contas Vencidas</p>
+            <p className="text-lg font-bold text-yellow-400">0</p>
+          </Card>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="border-emerald-500/20 bg-slate-900/50 backdrop-blur-sm p-6 space-y-4">
             <h2 className="text-lg font-semibold text-slate-200 flex items-center gap-2">
-              <Shield className="h-5 w-5 text-emerald-400" />Dados do Usuário (Supabase DB)
+              <Shield className="h-5 w-5 text-emerald-400" />Dados da Conta
             </h2>
             <div className="space-y-3">
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Email Cadastrado</label>
+                <label className="text-xs text-slate-400 block mb-1">Email do Usuário</label>
                 <p className="text-sm font-mono text-slate-200 bg-slate-950/40 p-2 rounded border border-slate-800">{userData.email}</p>
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">UUID no Banco de Dados</label>
+                <label className="text-xs text-slate-400 block mb-1">ID da Conta</label>
                 <p className="text-sm font-mono text-slate-300 bg-slate-950/40 p-2 rounded border border-slate-800 break-all">{userData.id}</p>
               </div>
             </div>
@@ -142,16 +166,16 @@ export default function DashboardPage() {
 
           <Card className="border-emerald-500/20 bg-slate-900/50 backdrop-blur-sm p-6 space-y-4">
             <h2 className="text-lg font-semibold text-slate-200 flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-emerald-400" />Mecanismos de Defesa
+              <CheckCircle2 className="h-5 w-5 text-emerald-400" />Segurança da Conta
             </h2>
             <div className="space-y-3">
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Status do MFA</label>
+                <label className="text-xs text-slate-400 block mb-1">Autenticação de Dois Fatores</label>
                 <div className="flex items-center gap-2 mt-1">
                   {mfaEnabled ? (
                     <>
                       <Badge className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/50">✓ Ativo (TOTP)</Badge>
-                      <span className="text-xs text-slate-400 font-mono">AAL Level: {aalLevel}</span>
+                      <span className="text-xs text-slate-400 font-mono">Nível: {aalLevel}</span>
                     </>
                   ) : (
                     <Badge className="bg-yellow-500/20 text-yellow-300 border border-yellow-500/50">⚠ Não Configurado</Badge>
@@ -162,17 +186,17 @@ export default function DashboardPage() {
               {!mfaEnabled && (
                 <Button onClick={() => navigate('/mfa/setup')} variant="outline"
                   className="w-full border-slate-700 text-slate-300 hover:bg-slate-800">
-                  Cadastrar App Autenticador (MFA)
+                  Ativar Autenticação de Dois Fatores
                 </Button>
               )}
 
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Hora de Início da Sessão</label>
+                <label className="text-xs text-slate-400 block mb-1">Início da Sessão</label>
                 <p className="text-sm text-slate-300 font-mono">{sessionStarted}</p>
               </div>
 
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Expiração do Token JWT</label>
+                <label className="text-xs text-slate-400 block mb-1">Expiração do Token</label>
                 <p className={`text-sm font-mono font-semibold ${remainingSeconds < 300 ? 'text-red-400' : 'text-emerald-400'}`}>
                   {Math.floor(remainingSeconds / 60)}m {remainingSeconds % 60}s
                 </p>
@@ -190,33 +214,34 @@ export default function DashboardPage() {
                 <p className="text-sm font-mono text-slate-300">{userIp}</p>
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Navegador Utilizado</label>
+                <label className="text-xs text-slate-400 block mb-1">Navegador</label>
                 <p className="text-sm text-slate-300 font-mono">{navigator.userAgent.substring(0, 50)}...</p>
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Horário do Acesso</label>
+                <label className="text-xs text-slate-400 block mb-1">Último Acesso</label>
                 <p className="text-sm text-slate-300 font-mono">{lastLogin}</p>
               </div>
             </div>
           </Card>
 
           <Card className="border-blue-500/20 bg-blue-500/5 p-6 space-y-4">
-            <h2 className="text-lg font-semibold text-blue-300">💡 Recomendações de Segurança</h2>
+            <h2 className="text-lg font-semibold text-blue-300">📊 Próximos Passos</h2>
             <ul className="space-y-2 text-xs text-blue-300 leading-relaxed">
-              <li>✓ A autenticação multifator (MFA) diminui drasticamente riscos de vazamento de credenciais.</li>
-              <li>✓ Nunca salve senhas ou segredos TOTP no seu computador pessoal em texto simples.</li>
-              <li>✓ Sempre clique em "Logout Seguro" antes de fechar o navegador em computadores compartilhados.</li>
-              <li>✓ Utilize senhas de alta entropia (geradas aleatoriamente com mais de 12 caracteres).</li>
+              <li>✓ Cadastre sua empresa para começar a controlar receitas e despesas.</li>
+              <li>✓ Configure categorias de movimentações para relatórios precisos.</li>
+              <li>✓ Cadastre contas a pagar e a receber para nunca perder prazos.</li>
+              <li>✓ Acompanhe seu fluxo de caixa e score financeiro em tempo real.</li>
             </ul>
           </Card>
         </div>
 
         <Card className="border-slate-700 bg-slate-800/50 p-4">
           <p className="text-xs text-slate-400 leading-relaxed">
-            <span className="font-semibold text-slate-300">📚 Nota Acadêmica:</span>{' '}
-            Este sistema utiliza autenticação com 2 fatores (Senha e TOTP do Google Authenticator). A criptografia de senha
-            (bcrypt + salt) e o gerenciamento de sessões (JWT em cookies HttpOnly/Secure) são realizados no servidor pelo Supabase.
-            O frontend realiza a validação de complexidade com Zod, prevenção de XSS com escape de caracteres e cooldown visual de brute-force.
+            <span className="font-semibold text-slate-300">📚 Sobre o Contábil+:</span>{' '}
+            Esta plataforma foi desenvolvida para simplificar a gestão contábil e financeira de MEIs,
+            microempresas e escritórios de contabilidade. A autenticação com 2 fatores protege seus dados
+            financeiros. A criptografia de senha (bcrypt + salt) e o gerenciamento de sessões
+            (JWT em cookies HttpOnly/Secure) são realizados pelo Supabase.
           </p>
         </Card>
       </main>

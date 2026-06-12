@@ -46,13 +46,13 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <AuthLayout title="Recuperar Senha" subtitle="Defina um link seguro de recuperação para seu email">
+    <AuthLayout title="Recuperar Senha" subtitle="Redefina sua senha para continuar acessando o Contábil+">
       {!isSuccess ? (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             <Card className="border-blue-500/20 bg-blue-500/5 p-3">
               <p className="text-xs text-blue-300 leading-relaxed">
-                Insira seu email cadastrado e enviaremos um link de redefinição de senha seguro.
+                Informe o email da sua conta Contábil+ e enviaremos um link seguro para você redefinir sua senha.
               </p>
             </Card>
 
@@ -80,9 +80,9 @@ export default function ForgotPasswordPage() {
 
             <Card className="border-amber-500/20 bg-amber-500/5 p-3">
               <p className="text-xs text-amber-300 leading-relaxed">
-                <span className="font-semibold">🔒 Privacidade:</span> Em conformidade com a mitigação
-                de User Enumeration, sempre exibiremos sucesso se o email for válido, independentemente
-                dele estar cadastrado ou não.
+                <span className="font-semibold">🔒 Privacidade:</span> Para sua segurança, sempre exibimos
+                a mensagem de sucesso independentemente do email estar cadastrado, protegendo
+                suas informações contra vazamento.
               </p>
             </Card>
 
@@ -102,10 +102,10 @@ export default function ForgotPasswordPage() {
       ) : (
         <div className="space-y-4 text-center">
           <CheckCircle2 className="h-12 w-12 text-emerald-500 mx-auto" />
-          <h2 className="text-lg font-semibold text-slate-200">Email de recuperação enviado!</h2>
+          <h2 className="text-lg font-semibold text-slate-200">Email enviado!</h2>
           <p className="text-sm text-slate-400">
             Se o email <span className="font-semibold text-slate-300">{submittedEmail}</span> estiver
-            cadastrado no sistema, você receberá um link seguro de recuperação em instantes.
+            cadastrado no Contábil+, você receberá um link de recuperação em instantes.
           </p>
           <Card className="border-slate-700 bg-slate-800/50 p-3">
             <p className="text-xs text-slate-300 leading-relaxed">

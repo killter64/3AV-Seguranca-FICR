@@ -14,6 +14,7 @@ import MfaSetupPage from "@/pages/MfaSetupPage";
 import MfaVerifyPage from "@/pages/MfaVerifyPage";
 import DashboardPage from "@/pages/DashboardPage";
 import AuthCallbackPage from "@/pages/AuthCallbackPage";
+// Contábil+ — Plataforma SaaS de gestão financeira e contábil para MEIs e pequenas empresas
 
 const queryClient = new QueryClient();
 

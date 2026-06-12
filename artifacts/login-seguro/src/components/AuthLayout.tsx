@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
-import { Shield } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AuthLayoutProps {
@@ -23,7 +23,7 @@ export function AuthLayout({ children, title, subtitle, className }: AuthLayoutP
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 blur-xl rounded-full" />
               <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 p-3 rounded-lg border border-emerald-500/30">
-                <Shield className="h-8 w-8 text-emerald-400" />
+                <Calculator className="h-8 w-8 text-emerald-400" />
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@ export function AuthLayout({ children, title, subtitle, className }: AuthLayoutP
           )}
 
           <p className="text-xs text-slate-500">
-            Sistema de Login Seguro - Autenticação Multifator (MFA)
+            Contábil+ — Gestão Financeira e Contábil para MEIs e Pequenas Empresas
           </p>
         </div>
 
@@ -54,7 +54,7 @@ export function AuthLayout({ children, title, subtitle, className }: AuthLayoutP
             <span>|</span>
             <span>Dados criptografados</span>
           </div>
-          <p>© 2024 Sistema ADS - Educacional apenas</p>
+          <p>© 2024 Contábil+ — Contabilidade Digital para MEIs e Microempresas</p>
         </div>
       </div>
     </div>

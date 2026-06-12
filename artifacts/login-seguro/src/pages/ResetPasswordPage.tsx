@@ -60,13 +60,13 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <AuthLayout title="Definir Nova Senha" subtitle="Escolha uma senha forte para sua segurança">
+    <AuthLayout title="Definir Nova Senha" subtitle="Proteja sua conta no Contábil+ com uma senha forte">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <Card className="border-blue-500/20 bg-blue-500/5 p-3">
             <p className="text-xs text-blue-300 leading-relaxed">
-              Insira sua nova senha abaixo. Ela deve conter no mínimo 12 caracteres, incluir
-              maiúsculas, minúsculas, números e caracteres especiais.
+              Crie uma nova senha segura. Mínimo 12 caracteres, com maiúsculas, minúsculas,
+              números e símbolos. Isso garante a segurança dos dados da sua empresa.
             </p>
           </Card>
 
@@ -110,8 +110,8 @@ export default function ResetPasswordPage() {
 
           <Card className="border-emerald-500/20 bg-emerald-500/5 p-3">
             <p className="text-xs text-emerald-300 leading-relaxed">
-              <span className="font-semibold">🔐 Criptografia:</span> A nova senha é hashada
-              automaticamente com bcrypt e salt no servidor do Supabase.
+              <span className="font-semibold">📊 Criptografia:</span> Sua nova senha é protegida
+              automaticamente com bcrypt e salt. Segurança de nível bancário para seus dados contábeis.
             </p>
           </Card>
 

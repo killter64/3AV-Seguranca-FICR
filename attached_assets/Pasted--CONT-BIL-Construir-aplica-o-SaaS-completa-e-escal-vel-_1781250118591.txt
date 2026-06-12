@@ -1,0 +1,651 @@
+# CONTÁBIL+ — Construir aplicação SaaS completa e escalável
+
+Desenvolva uma aplicação SaaS real chamada "Contábil+".
+
+Stack obrigatória:
+
+* Next.js 15 App Router
+* TypeScript
+* TailwindCSS
+* shadcn/ui
+* Supabase (Free Plan)
+* Server Actions
+* React Hook Form
+* Zod
+* Recharts
+* TanStack Table
+* Lucide Icons
+
+A aplicação deve ser responsiva, moderna e otimizada para desktop e mobile.
+
+Inspirar design em:
+
+* Stripe
+* Linear
+* Notion
+
+Priorizar simplicidade para:
+
+* MEIs
+* Pequenas empresas
+* Microempresas
+* Contadores autônomos
+* Escritórios de contabilidade
+
+---
+
+# REGRAS IMPORTANTES
+
+NÃO criar apenas protótipos.
+
+Criar código real e funcional.
+
+Todas as funcionalidades que dependem somente do Supabase devem funcionar completamente.
+
+Recursos que exigem integrações pagas ou APIs externas devem possuir:
+
+* interface completa;
+* banco de dados pronto;
+* arquitetura preparada;
+* serviços desacoplados;
+* mensagens "Em breve";
+* dados simulados ou regras internas temporárias.
+
+Toda a estrutura deve ser preparada para futura substituição dos dados simulados pelas integrações reais.
+
+---
+
+# ARQUITETURA
+
+Criar arquitetura multi-tenant.
+
+Um usuário pode possuir uma ou mais empresas.
+
+Utilizar Row Level Security em todas as tabelas.
+
+Todos os usuários só podem visualizar informações das empresas às quais pertencem.
+
+Criar:
+
+profiles
+
+companies
+
+user_companies
+
+roles
+
+Permitir papéis:
+
+* owner
+* accountant
+* collaborator
+
+---
+
+# AUTENTICAÇÃO
+
+Supabase Auth.
+
+Fluxos:
+
+* Login
+* Cadastro
+* Recuperação de senha
+* Logout
+* Sessão persistente
+
+Tabela profiles:
+
+* id
+* nome
+* email
+* telefone
+* avatar_url
+* created_at
+
+Utilizar Supabase Storage apenas para avatar.
+
+---
+
+# EMPRESAS
+
+Tabela companies:
+
+* id
+* owner_id
+* nome_fantasia
+* razao_social
+* cnpj
+* tipo_empresa
+* setor
+* cidade
+* estado
+* logo_url
+* created_at
+
+Funcionalidades:
+
+* criar empresa;
+* editar empresa;
+* selecionar empresa ativa.
+
+Utilizar Supabase Storage para logo da empresa.
+
+---
+
+# DASHBOARD
+
+Criar dashboard real.
+
+Cards:
+
+* receitas do mês;
+* despesas do mês;
+* lucro líquido;
+* saldo atual;
+* quantidade de contas vencidas;
+* próximos vencimentos;
+* score financeiro;
+* fluxo de caixa.
+
+Gráficos:
+
+* evolução das receitas;
+* evolução das despesas;
+* fluxo de caixa;
+* distribuição por categoria.
+
+Utilizar Recharts.
+
+Todos os dados devem vir do banco.
+
+---
+
+# MOVIMENTAÇÕES FINANCEIRAS
+
+Tabela transactions:
+
+* id
+* company_id
+* tipo
+* categoria
+* descricao
+* valor
+* data
+* observacao
+* created_at
+
+Funcionalidades:
+
+CRUD completo.
+
+Filtros:
+
+* período;
+* categoria;
+* valor;
+* tipo.
+
+Pesquisa.
+
+Paginação.
+
+Exportação CSV.
+
+---
+
+# CONTAS A PAGAR
+
+Tabela bills_payable.
+
+Campos:
+
+* id
+* company_id
+* descricao
+* valor
+* vencimento
+* categoria
+* status
+
+Permitir:
+
+* criar;
+* editar;
+* excluir;
+* marcar como pago;
+* visualizar atrasadas;
+* visualizar próximas.
+
+---
+
+# CONTAS A RECEBER
+
+Tabela bills_receivable.
+
+CRUD completo.
+
+---
+
+# FLUXO DE CAIXA
+
+Tabela cash_flow.
+
+Gerar automaticamente:
+
+* entradas;
+* saídas;
+* saldo acumulado.
+
+Visualizações:
+
+* diária;
+* semanal;
+* mensal.
+
+---
+
+# RELATÓRIOS
+
+Gerar:
+
+* PDF;
+* CSV.
+
+Relatórios:
+
+* financeiro;
+* receitas;
+* despesas;
+* fluxo de caixa;
+* contas a pagar;
+* contas a receber.
+
+---
+
+# ALERTAS
+
+Tabela alerts.
+
+Criar alertas automáticos:
+
+* contas vencendo;
+* contas atrasadas;
+* saldo negativo;
+* aumento anormal de despesas.
+
+Exibir notificações dentro da aplicação.
+
+Não utilizar push notifications.
+
+---
+
+# SCORE FINANCEIRO
+
+Pontuação entre 0 e 100.
+
+Baseado em:
+
+* saldo;
+* fluxo de caixa;
+* contas vencidas;
+* proporção receitas x despesas.
+
+Classificações:
+
+* excelente;
+* bom;
+* atenção;
+* crítico.
+
+Exibir indicadores visuais.
+
+---
+
+# IA E INSIGHTS
+
+Tabela ai_insights.
+
+Campos:
+
+* id
+* company_id
+* titulo
+* descricao
+* tipo
+* created_at
+
+Criar serviço:
+
+lib/ai-service.ts
+
+Não depender da OpenAI.
+
+Gerar insights utilizando regras internas.
+
+Exemplos:
+
+* despesas cresceram em relação ao mês anterior;
+* receitas aumentaram;
+* existem contas vencendo esta semana;
+* margem caiu;
+* fluxo de caixa está melhorando.
+
+Toda a arquitetura deve estar preparada para futura integração com OpenAI.
+
+---
+
+# PREVISÕES FINANCEIRAS
+
+Tabela financial_forecasts.
+
+Gerar previsões utilizando:
+
+* média móvel;
+* crescimento histórico;
+* tendência linear.
+
+Mostrar:
+
+* próximos 3 meses;
+* próximos 6 meses.
+
+Não utilizar machine learning externo.
+
+Preparar estrutura para futura IA avançada.
+
+---
+
+# BENCHMARKING
+
+Tabela sector_benchmarks.
+
+Criar regras internas por setor.
+
+Exemplos:
+
+Alimentação
+
+Comércio
+
+Serviços
+
+Mostrar:
+
+* margem média;
+* despesas recomendadas;
+* comparação com a empresa.
+
+Esses dados são internos e simulados.
+
+Arquitetura preparada para dados externos no futuro.
+
+---
+
+# IMPORTAÇÃO DE EXTRATOS
+
+Tabela bank_imports.
+
+Permitir upload:
+
+* CSV;
+* XLSX;
+* OFX.
+
+Importar movimentações automaticamente.
+
+Não integrar com bancos ainda.
+
+Preparar serviço:
+
+lib/open-finance-service.ts
+
+Mostrar "Integração bancária automática em breve".
+
+---
+
+# MÓDULO NF-E
+
+Criar módulo completo.
+
+Tabela invoices.
+
+Campos:
+
+* número;
+* série;
+* cliente;
+* valor;
+* data;
+* status.
+
+Permitir cadastro manual.
+
+Mostrar interface completa.
+
+Criar serviço:
+
+lib/nfe-service.ts
+
+Exibir:
+
+"Em breve: emissão automática integrada à SEFAZ."
+
+Não integrar ainda.
+
+---
+
+# DAS E OBRIGAÇÕES
+
+Tabela tax_obligations.
+
+Campos:
+
+* descrição;
+* vencimento;
+* status;
+* valor.
+
+Permitir:
+
+* cadastro manual;
+* alertas automáticos;
+* histórico.
+
+Criar serviço:
+
+lib/tax-service.ts
+
+Exibir:
+
+"Em breve: cálculo e consulta automáticos."
+
+---
+
+# CONTADORES
+
+Tabela accountant_clients.
+
+Permitir:
+
+* vários clientes;
+* acesso multiempresa;
+* alternar empresa ativa.
+
+Página:
+
+Meus clientes.
+
+Visualizar dashboard individual de cada cliente.
+
+---
+
+# COLABORADORES
+
+Tabela company_members.
+
+Papéis:
+
+* administrador;
+* contador;
+* colaborador.
+
+Permitir convite por e-mail.
+
+Controle de permissões via RLS.
+
+---
+
+# CONFIGURAÇÕES
+
+Perfil.
+
+Empresa.
+
+Segurança.
+
+Troca de senha.
+
+Tema claro e escuro.
+
+Preferências.
+
+---
+
+# STORAGE
+
+Utilizar Supabase Storage apenas para:
+
+* avatar;
+* logo da empresa.
+
+Evitar armazenamento desnecessário para economizar recursos do plano gratuito.
+
+---
+
+# PERFORMANCE
+
+Usar:
+
+* Server Components;
+* Server Actions;
+* Suspense;
+* Paginação;
+* Lazy Loading;
+* Índices PostgreSQL;
+* Queries otimizadas.
+
+Evitar consultas pesadas.
+
+Compatível com Supabase Free.
+
+---
+
+# BANCO DE DADOS
+
+Gerar:
+
+schema.sql
+
+Triggers.
+
+Foreign Keys.
+
+Indexes.
+
+Policies RLS.
+
+Seed inicial.
+
+---
+
+# COMPONENTES
+
+Criar componentes reutilizáveis.
+
+Estados:
+
+* loading;
+* empty;
+* skeleton;
+* erro.
+
+Validações utilizando Zod.
+
+Tratamento completo de exceções.
+
+---
+
+# PÁGINAS
+
+/
+
+Landing page.
+
+Planos.
+
+Sobre.
+
+Contato.
+
+/login
+
+/register
+
+/dashboard
+
+/dashboard/financeiro
+
+/dashboard/receitas
+
+/dashboard/despesas
+
+/dashboard/fluxo-caixa
+
+/dashboard/contas-pagar
+
+/dashboard/contas-receber
+
+/dashboard/relatorios
+
+/dashboard/insights
+
+/dashboard/previsoes
+
+/dashboard/benchmarking
+
+/dashboard/importacoes
+
+/dashboard/nfe
+
+/dashboard/obrigacoes
+
+/dashboard/clientes
+
+/dashboard/configuracoes
+
+---
+
+# MÓDULOS FUTUROS
+
+Criar páginas e arquitetura preparadas para:
+
+* Open Finance automático;
+* emissão automática NF-e;
+* integração Receita Federal;
+* SEFAZ;
+* WhatsApp Business;
+* API pública;
+* Webhooks;
+* OCR de documentos;
+* assistente IA conversacional;
+* análise avançada com OpenAI.
+
+Esses recursos devem aparecer como "Em breve", sem quebrar a experiência do usuário.
+
+---
+
+# RESULTADO ESPERADO
+
+Entregar uma aplicação SaaS completa, real e pronta para produção, com um núcleo 100% funcional baseado apenas no Supabase Free, enquanto os módulos avançados possuem UX completa e arquitetura preparada para futuras integrações sem necessidade de refatoração.

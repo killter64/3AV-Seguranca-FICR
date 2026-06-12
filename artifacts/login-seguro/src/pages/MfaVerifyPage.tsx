@@ -91,7 +91,7 @@ export default function MfaVerifyPage() {
   }
 
   return (
-    <AuthLayout title="Autenticação Multifator" subtitle="Confirme o código temporário no seu celular">
+    <AuthLayout title="Autenticação de Dois Fatores" subtitle="Confirme o código do seu app autenticador">
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <Button onClick={() => navigate('/login')} variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
@@ -108,7 +108,7 @@ export default function MfaVerifyPage() {
         {isVerified && (
           <Alert className="border-emerald-500/50 bg-emerald-500/10 text-emerald-300">
             <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-            <AlertDescription>Código verificado! Acesso concedido...</AlertDescription>
+            <AlertDescription>Código verificado! Acessando seu painel Contábil+...</AlertDescription>
           </Alert>
         )}
 
@@ -122,7 +122,8 @@ export default function MfaVerifyPage() {
 
             <Card className="border-emerald-500/20 bg-emerald-500/5 p-4 text-center">
               <p className="text-xs text-slate-300">
-                Abra seu aplicativo autenticador (ex: Google Authenticator) e insira o código de 6 dígitos temporário gerado para este sistema.
+                Abra seu app autenticador (Google Authenticator, Authy, etc.) e digite o código de 6 dígitos
+                gerado para sua conta no Contábil+.
               </p>
             </Card>
 

@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import AuthLayout from '@/components/AuthLayout';
 import SecurityHeadersNote from '@/components/SecurityHeadersNote';
-import { AlertCircle, Loader2, Lock, Clock } from 'lucide-react';
+import { AlertCircle, Loader2, Lock, Clock, Building2 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
 export default function LoginPage() {
@@ -87,7 +87,7 @@ export default function LoginPage() {
   const isButtonDisabled = isSubmitting || isRateLimitActive || !form.formState.isValid;
 
   return (
-    <AuthLayout title="Fazer Login" subtitle="Acesso seguro com autenticação multifator">
+    <AuthLayout title="Acessar Contábil+" subtitle="Gestão financeira segura para seu negócio">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           {rateLimitError && (
@@ -184,9 +184,9 @@ export default function LoginPage() {
         <SecurityHeadersNote />
         <Card className="border-amber-500/20 bg-amber-500/5 p-3">
           <p className="text-xs text-amber-300 leading-relaxed">
-            <span className="font-semibold">🛡️ Sessão e Hashing:</span> As senhas são hashadas
-            server-side com bcrypt pelo Supabase de forma nativa. Os tokens de sessão são mantidos
-            em cookies HttpOnly, Secure e SameSite=Strict gerenciados automaticamente.
+            <span className="font-semibold">🏢 Proteção da Conta:</span> Suas senhas são criptografadas com hash bcrypt
+            e os dados da sessão são mantidos em cookies seguros e HttpOnly. Sua privacidade e segurança
+            são prioridade absoluta no Contábil+.
           </p>
         </Card>
       </div>

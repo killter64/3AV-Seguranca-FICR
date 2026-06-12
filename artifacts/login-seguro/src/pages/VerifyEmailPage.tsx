@@ -80,21 +80,21 @@ export default function VerifyEmailPage() {
 
   if (isVerified) {
     return (
-      <AuthLayout title="Email Verificado!" subtitle="Redirecionando...">
+      <AuthLayout title="Email Verificado!" subtitle="Preparando seu ambiente Contábil+...">
         <div className="space-y-6 text-center">
           <div className="flex justify-center">
             <div className="rounded-full bg-emerald-500/20 p-6">
               <CheckCircle2 className="h-12 w-12 text-emerald-400" />
             </div>
           </div>
-          <p className="text-slate-300">Seu email foi confirmado com sucesso!</p>
+          <p className="text-slate-300">Email confirmado! Agora vamos configurar sua autenticação de dois fatores para proteger seus dados financeiros.</p>
         </div>
       </AuthLayout>
     );
   }
 
   return (
-    <AuthLayout title="Verifique Seu Email" subtitle="Insira o código enviado para sua caixa de entrada">
+    <AuthLayout title="Verifique Seu Email" subtitle="Confirme seu email para ativar sua conta no Contábil+">
       <div className="space-y-6">
         <div className="flex justify-center">
           <div className="rounded-full bg-emerald-500/20 p-6">
